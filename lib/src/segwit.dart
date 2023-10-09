@@ -61,7 +61,6 @@ class SegwitDecoder extends Converter<String, Segwit> with SegwitValidations {
   @override
   Segwit convert(String input) {
     var decoded = bech32.decode(input);
-
     if (isInvalidHrp(decoded.hrp)) {
       throw InvalidHrp();
     }
@@ -98,7 +97,7 @@ class SegwitDecoder extends Converter<String, Segwit> with SegwitValidations {
 /// Generic validations for a Segwit class.
 class SegwitValidations {
   bool isInvalidHrp(String hrp) {
-    return hrp != 'bc' && hrp != 'tb';
+    return hrp != 'bc' && hrp != 'tb' && hrp != 'ltc' && hrp != 'tltc';
   }
 
   bool isEmptyProgram(List<int> data) {
